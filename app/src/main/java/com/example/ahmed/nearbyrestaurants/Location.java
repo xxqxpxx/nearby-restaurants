@@ -1,5 +1,8 @@
 package com.example.ahmed.nearbyrestaurants;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ahmed on 6/8/17.
  */
@@ -7,8 +10,11 @@ package com.example.ahmed.nearbyrestaurants;
 public class Location {
 
 
+    @SerializedName("lat")
+    @Expose
     private Double lat;
-
+    @SerializedName("lng")
+    @Expose
     private Double lng;
 
     /**
@@ -46,5 +52,4 @@ public class Location {
     public void setLng(Double lng) {
         this.lng = lng;
     }
-
 }

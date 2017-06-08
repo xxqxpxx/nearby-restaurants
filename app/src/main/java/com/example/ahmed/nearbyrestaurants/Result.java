@@ -1,5 +1,8 @@
 package com.example.ahmed.nearbyrestaurants;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +43,14 @@ public class Result {
         return geometry;
     }
 
+
+
     /**
      *
      * @param geometry
      * The geometry
      */
+
     public void setGeometry(Geometry geometry) {
         this.geometry = geometry;
     }

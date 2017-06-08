@@ -1,12 +1,16 @@
 package com.example.ahmed.nearbyrestaurants;
 
-import android.location.Location;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by ahmed on 6/8/17.
  */
 
 public class Geometry {
+
+    @SerializedName("location")
+    @Expose
     private Location location;
 
     /**
@@ -26,4 +30,5 @@ public class Geometry {
     public void setLocation(Location location) {
         this.location = location;
     }
+
 }
