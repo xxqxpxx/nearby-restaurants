@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.nearbyrestaurants.MainActivity">
+
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="187dp"
+        android:layout_height="176dp"
+        app:srcCompat="@drawable/food"
+        android:scaleType="fitCenter"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="118dp"
+        android:adjustViewBounds="true"
+        android:onClick="SearchRestaurants"/>
+
+
+</android.support.constraint.ConstraintLayout>
