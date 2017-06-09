@@ -1,8 +1,9 @@
 package com.example.ahmed.nearbyrestaurants;
 
+import android.content.Intent;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,7 +22,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.location.*;
 
 import java.util.List;
 
@@ -50,7 +49,9 @@ public class MapsActivity extends AppCompatActivity
     private String venueName;
     private double venueLatitude;
     private double venueLongitude;
+    List<FoursquareResults> Venues;
     private int PROXIMITY_RADIUS = 1000;
+     List<Result> Places;
 
 
     @Override
@@ -158,6 +159,7 @@ public class MapsActivity extends AppCompatActivity
 
                     Log.v("" , "onResponse: " +  response.body().getResults().size() );
                     // This loop will go through all the results and add marker on each location.
+                    Places = response.body().getResults();
                     for (int i = 0; i < response.body().getResults().size(); i++) {
                         Double lat = response.body().getResults().get(i).getGeometry().getLocation().getLat();
                         Double lng = response.body().getResults().get(i).getGeometry().getLocation().getLng();
@@ -229,6 +231,7 @@ public class MapsActivity extends AppCompatActivity
                 FoursquareResponse fr = fjson.response;
                 FoursquareGroup fg = fr.group;
                 List<FoursquareResults> frs = fg.results;
+             Venues = frs;
 
               for (int i = 0 ; i < frs.size() ; ++i)
               {
@@ -258,14 +261,17 @@ public class MapsActivity extends AppCompatActivity
                 finish();
             }
         });
+
+        LatLng zoomin = new LatLng(mLastLocation.getLatitude() , mLastLocation.getLongitude());
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoomin, 14));
     }
 
     public void switchtolist(View v )
     {
-
-        build_retrofit_and_get_response("restaurant");
-        build_retrofit_and_get_response_Foursquare();
+        Intent intent = new Intent(getBaseContext(), ListRestaurantsAdapter.class);
+        intent.putExtra("Venues", (Parcelable) Venues);
+        intent.putExtra("Places", (Parcelable) Places);
+        startActivity(intent);
     }
-
 
 }
