@@ -5,8 +5,16 @@
     android:id="@+id/activity_place_picker"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.matthewhuie.mrjitters.PlacePickerActivity"
+    tools:context="com.example.ahmed.nearbyrestaurants.ListRestaurantsActivity"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/Switchtolist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="switch To Map View"
+        android:onClick="switchtolist"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

@@ -1,7 +1,6 @@
 package com.example.ahmed.nearbyrestaurants;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,25 +40,13 @@ public class ListRestaurantsAdapter extends RecyclerView.Adapter<ListRestaurants
             // Gets the appropriate view for each venue detail
             name = (TextView)v.findViewById(R.id.placePickerItemName);
             address = (TextView)v.findViewById(R.id.placePickerItemAddress);
-            rating = (TextView)v.findViewById(R.id.placePickerItemRating);
+       //     rating = (TextView)v.findViewById(R.id.placePickerItemRating);
             distance = (TextView)v.findViewById(R.id.placePickerItemDistance);
         }
 
         @Override
         public void onClick(View v) {
 
-            // Creates an intent to direct the user to a map view
-            Context context = name.getContext();
-            Intent i = new Intent(context, MapsActivity.class);
-
-            // Passes the crucial venue details onto the map view
-            i.putExtra("name", name.getText());
-            i.putExtra("ID", id);
-            i.putExtra("latitude", latitude);
-            i.putExtra("longitude", longitude);
-
-            // Transitions to the map view.
-            context.startActivity(i);
         }
     }
 

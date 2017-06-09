@@ -28,23 +28,13 @@
         android:ellipsize="end"
         android:maxLines="1" />
 
-    <TextView
-        android:id="@+id/placePickerItemRating"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:padding="8dp"
-        android:elevation="1dp" />
 
     <TextView
         android:id="@+id/placePickerItemDistance"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/placePickerItemRating"
+        android:layout_toStartOf="@id/placePickerItemAddress"
         android:layout_marginEnd="16dp"
         android:textSize="12sp" />
 

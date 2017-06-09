@@ -49,9 +49,10 @@ public class MapsActivity extends AppCompatActivity
     private String venueName;
     private double venueLatitude;
     private double venueLongitude;
-    List<FoursquareResults> Venues;
+
     private int PROXIMITY_RADIUS = 1000;
-     List<Result> Places;
+    public static List<Result> Places;
+    public static List<FoursquareResults> Venues;
 
 
     @Override
@@ -60,7 +61,7 @@ public class MapsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        getSupportActionBar().setTitle("Map Location Activity");
+     //   getSupportActionBar().setTitle("Map Location Activity");
   //      Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
@@ -268,9 +269,9 @@ public class MapsActivity extends AppCompatActivity
 
     public void switchtolist(View v )
     {
-        Intent intent = new Intent(getBaseContext(), ListRestaurantsAdapter.class);
-        intent.putExtra("Venues", (Parcelable) Venues);
-        intent.putExtra("Places", (Parcelable) Places);
+        Intent intent = new Intent(getBaseContext(), ListRestaurantsActivity.class);
+   //     intent.putExtra("Venues", (Parcelable) Venues);
+   //     intent.putExtra("Places", (Parcelable) Places);
         startActivity(intent);
     }
 

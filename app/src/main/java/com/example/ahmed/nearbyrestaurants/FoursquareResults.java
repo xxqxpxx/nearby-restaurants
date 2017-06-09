@@ -9,4 +9,7 @@ public class FoursquareResults  {
     // A venue object within the results.
     FoursquareVenue venue;
 
+    public FoursquareResults(FoursquareVenue item) {
+        this.venue = item;
+    }
 }

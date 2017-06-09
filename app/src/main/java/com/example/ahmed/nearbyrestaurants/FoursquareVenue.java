@@ -8,6 +8,7 @@ public class FoursquareVenue {
     // The ID of the venue.
     String id;
 
+
     // The name of the venue.
     String name;
 
@@ -16,4 +17,20 @@ public class FoursquareVenue {
 
     // A location object within the venue.
     FoursquareLocation location;
+
+    public void setId( String id)
+    {
+        this.id = id;
+    }
+
+    public void setName( String name)
+    {
+        this.name = name;
+    }
+
+    public void setRating( double rating)
+    {
+        this.rating = rating;
+    }
+
 }
