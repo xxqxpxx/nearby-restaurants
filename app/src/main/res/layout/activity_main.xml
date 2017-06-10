@@ -13,8 +13,6 @@
         app:srcCompat="@drawable/food"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="118dp"
         android:adjustViewBounds="true"
         android:onClick="SearchRestaurants"/>
 

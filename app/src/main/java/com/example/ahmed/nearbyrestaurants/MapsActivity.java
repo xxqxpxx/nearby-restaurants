@@ -3,7 +3,6 @@ package com.example.ahmed.nearbyrestaurants;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -101,7 +100,7 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onConnected(Bundle bundle) {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
+        mLocationRequest.setInterval(10000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
          LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -194,7 +193,7 @@ public class MapsActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Google Api is down", Toast.LENGTH_LONG).show();
             }
 
 
@@ -241,6 +240,9 @@ public class MapsActivity extends AppCompatActivity
                   double    venueLatitude = frs.get(i).venue.location.lat;
                    double   venueLongitude = frs.get(i).venue.location.lng;
 
+                  String p = frs.get(i).venue.contact.phone;
+                  String c1 = frs.get(i).venue.categories.get(0).shortName;
+
                   MarkerOptions markerOptions = new MarkerOptions();
                   LatLng latLng = new LatLng(venueLatitude, venueLongitude);
 
@@ -258,7 +260,7 @@ public class MapsActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<FoursquareJSON> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Mr. Jitters can't connect to Foursquare's servers!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Foursquare Api is down ", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -270,8 +272,6 @@ public class MapsActivity extends AppCompatActivity
     public void switchtolist(View v )
     {
         Intent intent = new Intent(getBaseContext(), ListRestaurantsActivity.class);
-   //     intent.putExtra("Venues", (Parcelable) Venues);
-   //     intent.putExtra("Places", (Parcelable) Places);
         startActivity(intent);
     }
 

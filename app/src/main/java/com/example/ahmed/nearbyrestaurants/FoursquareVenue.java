@@ -1,5 +1,7 @@
 package com.example.ahmed.nearbyrestaurants;
 
+import java.util.List;
+
 /**
  * Created by ahmed on 6/8/17.
  */
@@ -7,7 +9,6 @@ package com.example.ahmed.nearbyrestaurants;
 public class FoursquareVenue {
     // The ID of the venue.
     String id;
-
 
     // The name of the venue.
     String name;
@@ -17,6 +18,14 @@ public class FoursquareVenue {
 
     // A location object within the venue.
     FoursquareLocation location;
+
+    String phone;
+
+    String formattedPhone;
+
+    FoursquareContact contact;
+
+    List<FoursquareCategory>  categories;
 
     public void setId( String id)
     {
@@ -38,6 +47,7 @@ public class FoursquareVenue {
         this.name = "";
         this .id = "";
         this . rating = -1;
-        this.location = new FoursquareLocation();
+    //    this.location = new FoursquareLocation();
+  //      this.contact = new FoursquareContact();
     }
 }

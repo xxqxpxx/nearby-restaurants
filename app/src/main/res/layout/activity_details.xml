@@ -1,35 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.example.ahmed.nearbyrestaurants.DetailsActivity">
 
 
     <TextView
         android:layout_width="368dp"
-        android:layout_height="30dp"
-         android:id="@+id/category"/>
+        android:layout_height="50dp"
+         android:id="@+id/category"
+        android:textSize="25sp"
+        android:text="Category "
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+       />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:layout_width="368dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp"
-         android:id="@+id/rating"/>
+        android:layout_height="50dp"
+        android:id="@+id/subcategory"
+        android:textSize="25sp"
+        android:text="Sub Category "
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:layout_width="368dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp"
-         android:id="@+id/telephone"/>
+        android:layout_height="50dp"
+        android:textSize="25sp"
+        android:text="rating"
+        tools:layout_editor_absoluteY="221dp"
+        tools:layout_editor_absoluteX="-9dp"
+         android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/rating"/>
 
-    <TextView
-        android:layout_width="368dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp"
-         android:id="@+id/address"/>
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/phoneCall"
+            android:layout_width="187dp"
+            android:layout_height="176dp"
+            app:srcCompat="@drawable/phone"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:onClick="phoneCall"
+            android:contentDescription="phoneCall" />
+
+
+        <ImageButton
+            android:id="@+id/mapDirection"
+            android:layout_width="187dp"
+            android:layout_height="176dp"
+            app:srcCompat="@drawable/map"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="118dp"
+            android:adjustViewBounds="true"
+            android:onClick="mapDirection"
+            android:contentDescription="mapDirection" />
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
