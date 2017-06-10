@@ -17,4 +17,11 @@ public class FoursquareLocation {
     // The distance of the location, calculated from the specified location.
     int distance;
 
+   public void FoursquareLocation()
+   {
+       this.address = "";
+       this.lat = 0;
+       this.lng= 0;
+       this.distance = 0;
+   }
 }

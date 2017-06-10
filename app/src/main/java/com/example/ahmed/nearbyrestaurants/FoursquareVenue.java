@@ -33,4 +33,11 @@ public class FoursquareVenue {
         this.rating = rating;
     }
 
+    public void FoursquareVenue()
+    {
+        this.name = "";
+        this .id = "";
+        this . rating = -1;
+        this.location = new FoursquareLocation();
+    }
 }

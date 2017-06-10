@@ -1,13 +1,17 @@
 package com.example.ahmed.nearbyrestaurants;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by ahmed on 6/9/17.
@@ -47,6 +51,10 @@ public class ListRestaurantsAdapter extends RecyclerView.Adapter<ListRestaurants
         @Override
         public void onClick(View v) {
 
+            Intent intent = new Intent(v.getContext() , DetailsActivity.class);
+            intent.putExtra("ITEM" ,  getAdapterPosition());
+            Log.d(TAG, "onClick: " + getAdapterPosition());
+            v.getContext().startActivity(intent);
         }
     }
 

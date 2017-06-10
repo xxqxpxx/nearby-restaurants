@@ -41,22 +41,30 @@ public class ListRestaurantsActivity extends AppCompatActivity {
 
 
     public void addPlacesFromGooglePlacesToVenues() {
-        FoursquareVenue item = new FoursquareVenue();
 
         Log.e("" , "Places " + Places.size());
 
-        for (int i = 0; i < Places.size(); ++i) {
 
-        //    item.location.address = Places.get(i).getVicinity();
+        for (int i = 0; i < Places.size(); ++i) {
+            FoursquareVenue item = new FoursquareVenue();
+            FoursquareLocation loc = new FoursquareLocation();
+
+            item.name = "";
+
+            loc.address = Places.get(i).getVicinity();
+            loc.lng =  Places.get(i).getGeometry().getLocation().getLng();
+            loc.lat = Places.get(i).getGeometry().getLocation().getLat();
+
             item.name = Places.get(i).getName();
-            item.location.lat = Places.get(i).getGeometry().getLocation().getLat();
-            item.location.lng = Places.get(i).getGeometry().getLocation().getLng();
+            item.location = loc;
+            item.rating = Places.get(i).getRating();
+            item.id = Places.get(i).getId();
+
             Log.e("" , "Places " + item );
 
 
             Venues.add(new FoursquareResults(item));
 
-            item = null;
         }
     }
 
@@ -74,11 +82,10 @@ public class ListRestaurantsActivity extends AppCompatActivity {
         // Disconnects from the Google API
      }
 
+
     public void switchtolist(View v )
     {
         Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-        //     intent.putExtra("Venues", (Parcelable) Venues);
-        //     intent.putExtra("Places", (Parcelable) Places);
         startActivity(intent);
     }
 
