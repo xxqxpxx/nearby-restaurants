@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.Google;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.Google;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

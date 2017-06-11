@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.View;
 
 import android.content.Intent;
 import android.location.Location;
@@ -8,11 +8,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ahmed.nearbyrestaurants.Model.Google.Example;
+import com.example.ahmed.nearbyrestaurants.Model.Google.Result;
+import com.example.ahmed.nearbyrestaurants.Model.Google.RetrofitMaps;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareGroup;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareJSON;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareResponse;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareResults;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareService;
+import com.example.ahmed.nearbyrestaurants.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,16 +54,17 @@ public class MapsActivity extends AppCompatActivity
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
     LocationRequest mLocationRequest;
-    GoogleApiClient mGoogleApiClient;
+    public static GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     private String venueID;
     private String venueName;
     private double venueLatitude;
     private double venueLongitude;
+    public static  int Index;
 
     private int PROXIMITY_RADIUS = 1000;
-    public static List<Result> Places;
+    public static List<Result> Placess;
     public static List<FoursquareResults> Venues;
 
 
@@ -86,6 +100,14 @@ public class MapsActivity extends AppCompatActivity
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
 
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
+            @Override
+            public void onInfoWindowClick(Marker arg0) {
+
+            }
+
+        });
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -136,6 +158,28 @@ public class MapsActivity extends AppCompatActivity
 
     }
 
+    public void setGooglePhone(String number )
+    {
+        Placess.get(Index).setformatted_phone_number(number);
+        Log.v("ahmed" , "phoneNumber" + number);
+    }
+
+    public void getGooglePhone( int i)
+    {
+        Places.GeoDataApi.getPlaceById(mGoogleApiClient, Placess.get(i).getplaceid()).setResultCallback(new ResultCallback<PlaceBuffer>() {
+            @Override
+            public void onResult(PlaceBuffer places) {
+                if (places.getStatus().isSuccess() ) {
+                    Place myPlace = places.get(0);
+                    setGooglePhone( (String) myPlace.getPhoneNumber());
+                } else {
+                    Log.e("", "Place not found");
+                }
+                places.release();
+            }
+        });
+    }
+
     private void build_retrofit_and_get_response(String type) {
         String url = "https://maps.googleapis.com/maps/";
         Retrofit retrofit = new Retrofit.Builder()
@@ -155,16 +199,19 @@ public class MapsActivity extends AppCompatActivity
                 Log.v("" , "onResponse: " +  call.isExecuted() );
 
                 try {
-              //      mGoogleMap.clear();
 
                     Log.v("" , "onResponse: " +  response.body().getResults().size() );
                     // This loop will go through all the results and add marker on each location.
-                    Places = response.body().getResults();
+                    Placess = response.body().getResults();
                     for (int i = 0; i < response.body().getResults().size(); i++) {
                         Double lat = response.body().getResults().get(i).getGeometry().getLocation().getLat();
                         Double lng = response.body().getResults().get(i).getGeometry().getLocation().getLng();
                         String placeName = response.body().getResults().get(i).getName();
                         String vicinity = response.body().getResults().get(i).getVicinity();
+                    //    Placess.get(i).setformatted_phone_number("-1");
+                        Placess.get(i).setCategory("Food");
+                        Index = i;
+              //          getGooglePhone(i);
 
                         MarkerOptions markerOptions = new MarkerOptions();
                         LatLng latLng = new LatLng(lat, lng);
@@ -239,9 +286,8 @@ public class MapsActivity extends AppCompatActivity
                   String   venueName = frs.get(i).venue.name;
                   double    venueLatitude = frs.get(i).venue.location.lat;
                    double   venueLongitude = frs.get(i).venue.location.lng;
-
-                  String p = frs.get(i).venue.contact.phone;
-                  String c1 = frs.get(i).venue.categories.get(0).shortName;
+                  Venues.get(i).venue.cat = frs.get(i).venue.categories.get(0).shortName;
+                  Venues.get(i).venue.phone = frs.get(i).venue.contact.phone;;
 
                   MarkerOptions markerOptions = new MarkerOptions();
                   LatLng latLng = new LatLng(venueLatitude, venueLongitude);
@@ -275,4 +321,8 @@ public class MapsActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

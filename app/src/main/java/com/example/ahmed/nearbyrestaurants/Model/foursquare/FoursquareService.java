@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.foursquare;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

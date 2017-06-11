@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.foursquare;
 
 import java.util.List;
 
@@ -8,25 +8,37 @@ import java.util.List;
 
 public class FoursquareVenue {
     // The ID of the venue.
-    String id;
+    public String id;
 
     // The name of the venue.
-    String name;
+    public String name;
 
     // The rating of the venue, if available.
-    double rating;
+    public double rating;
 
     // A location object within the venue.
-    FoursquareLocation location;
+    public FoursquareLocation location;
 
-    String phone;
+    // Catagory
+    public String cat;
 
-    String formattedPhone;
+    // phone number
+    public String phone;
 
-    FoursquareContact contact;
+    // Object contact
+    public FoursquareContact contact;
 
-    List<FoursquareCategory>  categories;
+    public List<FoursquareCategory>  categories;
 
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public String getPhone()
+    {
+        return phone;
+    }
     public void setId( String id)
     {
         this.id = id;
@@ -47,6 +59,7 @@ public class FoursquareVenue {
         this.name = "";
         this .id = "";
         this . rating = -1;
+        this.phone = "";
     //    this.location = new FoursquareLocation();
   //      this.contact = new FoursquareContact();
     }

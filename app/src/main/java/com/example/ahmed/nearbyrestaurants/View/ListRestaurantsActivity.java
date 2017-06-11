@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import static com.example.ahmed.nearbyrestaurants.MapsActivity.Places;
-import static com.example.ahmed.nearbyrestaurants.MapsActivity.Venues;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareCategory;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareLocation;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareResults;
+import com.example.ahmed.nearbyrestaurants.Model.foursquare.FoursquareVenue;
+import com.example.ahmed.nearbyrestaurants.Presenter.ListRestaurantsAdapter;
+import com.example.ahmed.nearbyrestaurants.R;
 
 public class ListRestaurantsActivity extends AppCompatActivity {
 
-    // The RecyclerView and associated objects for displaying the nearby coffee spots
     private RecyclerView listRestaurant;
     private LinearLayoutManager listRestaurantManager;
     private RecyclerView.Adapter listRestaurantAdapter;
@@ -35,35 +38,38 @@ public class ListRestaurantsActivity extends AppCompatActivity {
         listRestaurant.addItemDecoration(new DividerItemDecoration(listRestaurant.getContext(), listRestaurantManager.getOrientation()));
 
         addPlacesFromGooglePlacesToVenues();
-        listRestaurantAdapter = new ListRestaurantsAdapter(getApplicationContext(), Venues);
+        listRestaurantAdapter = new ListRestaurantsAdapter(getApplicationContext(), MapsActivity.Venues);
         listRestaurant.setAdapter(listRestaurantAdapter);
     }
 
 
     public void addPlacesFromGooglePlacesToVenues() {
 
-        Log.e("" , "Places " + Places.size());
+        Log.e("" , "Placess " + MapsActivity.Placess.size());
 
 
-        for (int i = 0; i < Places.size(); ++i) {
+        for (int i = 0; i < MapsActivity.Placess.size(); ++i) {
             FoursquareVenue item = new FoursquareVenue();
             FoursquareLocation loc = new FoursquareLocation();
+            FoursquareCategory cat = new FoursquareCategory();
 
             item.name = "";
 
-            loc.address = Places.get(i).getVicinity();
-            loc.lng =  Places.get(i).getGeometry().getLocation().getLng();
-            loc.lat = Places.get(i).getGeometry().getLocation().getLat();
+            loc.address = MapsActivity.Placess.get(i).getVicinity();
+            loc.lng =  MapsActivity.Placess.get(i).getGeometry().getLocation().getLng();
+            loc.lat = MapsActivity.Placess.get(i).getGeometry().getLocation().getLat();
 
-            item.name = Places.get(i).getName();
+            item.name = MapsActivity.Placess.get(i).getName();
             item.location = loc;
-            item.rating = Places.get(i).getRating();
-            item.id = Places.get(i).getId();
+            item.rating = MapsActivity.Placess.get(i).getRating();
+            item.id = MapsActivity.Placess.get(i).getplaceid();
+            item.phone = MapsActivity.Placess.get(i).getformatted_phone_number();
 
-            Log.e("" , "Places " + item );
+            item.cat = MapsActivity.Placess.get(i).getCategory();
+            Log.e("" , "Placess " + item );
 
 
-            Venues.add(new FoursquareResults(item));
+            MapsActivity.Venues.add(new FoursquareResults(item));
 
         }
     }
@@ -71,20 +77,22 @@ public class ListRestaurantsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Reconnects to the Google API
      }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        // Disconnects from the Google API
      }
 
+     @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
     public void switchtolist(View v )
     {
+        MapsActivity.Venues = null;
+        MapsActivity.Placess = null;
         Intent intent = new Intent(getBaseContext(), MapsActivity.class);
         startActivity(intent);
     }

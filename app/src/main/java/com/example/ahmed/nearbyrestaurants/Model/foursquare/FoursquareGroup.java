@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.foursquare;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,6 @@ import java.util.List;
 public class FoursquareGroup {
     // A results list within the group.
 
-    List<FoursquareResults> results = new ArrayList<FoursquareResults>();
+    public List<FoursquareResults> results = new ArrayList<FoursquareResults>();
 
 }

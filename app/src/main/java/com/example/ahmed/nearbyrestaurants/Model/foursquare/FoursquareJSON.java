@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.foursquare;
 
 /**
  * Created by ahmed on 6/8/17.
@@ -7,6 +7,6 @@ package com.example.ahmed.nearbyrestaurants;
 public class FoursquareJSON {
     // A response object within the JSON.
 
-    FoursquareResponse response;
+    public FoursquareResponse response;
 
 }

@@ -1,7 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.example.ahmed.nearbyrestaurants.Model.Google;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,7 @@ public class Result {
     private String icon;
     private String id;
     private String name;
-    private String placeId;
+    private String place_id;
     private Double rating;
     private String reference;
     private String scope;
@@ -23,6 +20,28 @@ public class Result {
     private String vicinity;
     private Integer priceLevel;
     private Geometry geometry;
+    private String formatted_phone_number;
+    private String category;
+
+    public void setCategory(String category)
+    {
+        this.category = category;
+    }
+
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public String getformatted_phone_number()
+    {
+        return formatted_phone_number;
+    }
+
+    public void setformatted_phone_number( String formatted_phone_number)
+    {
+        this.formatted_phone_number = formatted_phone_number;
+    }
 
 
     /**
@@ -106,8 +125,8 @@ public class Result {
      * @return
      * The placeId
      */
-    public String getPlaceId() {
-        return placeId;
+    public String getplaceid() {
+        return place_id;
     }
 
     /**
@@ -115,8 +134,8 @@ public class Result {
      * @param placeId
      * The place_id
      */
-    public void setPlaceId(String placeId) {
-        this.placeId = placeId;
+    public void setplaceid(String placeid) {
+        this.place_id = placeid;
     }
 
     /**

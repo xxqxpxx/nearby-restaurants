@@ -1,7 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.example.ahmed.nearbyrestaurants.Model.Google;
 
 /**
  * Created by ahmed on 6/8/17.
@@ -9,8 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Geometry {
 
-    @SerializedName("location")
-    @Expose
     private Location location;
 
     /**

@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.View;
 
 import android.Manifest;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.example.ahmed.nearbyrestaurants.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,11 +32,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         }
-
         else
         {
                 Intent i = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(i);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
 }

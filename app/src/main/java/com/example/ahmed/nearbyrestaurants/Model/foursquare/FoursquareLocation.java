@@ -1,4 +1,4 @@
-package com.example.ahmed.nearbyrestaurants;
+package com.example.ahmed.nearbyrestaurants.Model.foursquare;
 
 /**
  * Created by ahmed on 6/8/17.
@@ -6,16 +6,16 @@ package com.example.ahmed.nearbyrestaurants;
 
 public class FoursquareLocation {
     // The address of the location.
-    String address;
+    public String address;
 
     // The latitude of the location.
-    double lat;
+    public double lat;
 
     // The longitude of the location.
-    double lng;
+    public double lng;
 
     // The distance of the location, calculated from the specified location.
-    int distance;
+    public int distance;
 
    public void FoursquareLocation()
    {

@@ -5,7 +5,7 @@
     android:id="@+id/activity_place_picker"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ahmed.nearbyrestaurants.ListRestaurantsActivity"
+    tools:context="com.example.ahmed.nearbyrestaurants.View.ListRestaurantsActivity"
     android:orientation="vertical">
 
     <Button
